@@ -36,6 +36,28 @@ struct node{
 	struct node *right;
 };
 
+
+void locate(struct node *root1, struct node **root2){
+	struct node * cur = *root2;
+	if (root1 == NULL){
+		root1 = cur;
+	}
+	else{
+		
+	}
+
+}
+void merge(struct node *root1, struct node *root2){
+	if (root2 == NULL)	return;
+	merge(root1, root2->left);
+	locate(root1, &root2->left);
+	merge(root1, root2->right);
+
+}
 void merge_two_bst(struct node *root1, struct node *root2){
-	
+	if (root1 == NULL){
+		root1 = root2;
+		return;
+	} if(root2 == NULL)	return;
+//	merge(root1, root2);
 }

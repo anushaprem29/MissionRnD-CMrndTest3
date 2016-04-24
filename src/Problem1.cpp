@@ -50,7 +50,25 @@ struct node{
 	struct node *right;
 };
 
-
+void calSum(struct node *r, int * sum){
+	if (r == NULL)	return;
+	calSum(r->right,sum);
+	*sum = *sum + r->data;
+	calSum(r->left, sum);
+}
 int get_missing_value(struct node *root,int n){
-    return -1;
+    //checking constraints
+	if(root==NULL || n==0)	return -1;
+	if (n > 10000 || n < -10000)	return -1;
+	int sum = 0,real_sum;
+	calSum(root, &sum);
+	if (n > 0){
+			real_sum = (n *(n + 1)) / 2;
+	}
+	//for negative numbers
+	else{
+		real_sum =(-1)*n *(n - 1)/ 2;
+	}
+	//returns 0 if there is no missing value.
+	return real_sum - sum;
 }
